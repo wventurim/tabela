@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AVES</title>
+  <title>Painel de Produtos</title>
   <style>
     body {
-      font-family: 'Verdana', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background-color: #fdfdfd;
       color: #222;
       margin: 0;
@@ -23,88 +23,9 @@
     }
 
     table {
-      width: 100%;
-      max-width: 1600px;
+      width: 90%;
+      max-width: 1000px;
       border-collapse: separate;
       border-spacing: 0;
       font-size: 1.6rem;
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.08);
-      overflow: hidden;
-    }
-
-    th, td {
-      padding: 1.2rem;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f0f0f0;
-      font-weight: bold;
-      font-size: 1.4rem;
-      color: #444;
-    }
-
-    tr:nth-child(even) {
-      background-color: #fafafa;
-    }
-
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-
-    @media (max-width: 768px) {
-      table {
-        font-size: 1.2rem;
-      }
-
-      h1 {
-        font-size: 2.2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <table id="tabela">
-    <thead>
-      <tr>
-        <th>AVES</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-  <script>
-    const SHEET_ID = '1NrBx3_GodYcLjxYtNwUbnSn8siY1cTcrvQ5OI5dJmy0';
-    const SHEET_NAME = 'Página1';
-    const INTERVALO_MINUTOS = 60;
-
-    async function carregarDados() {
-      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
-      try {
-        const response = await fetch(url);
-        const text = await response.text();
-        const json = JSON.parse(text.substring(47).slice(0, -2));
-        const dados = json.table.rows;
-
-        const tbody = document.querySelector('#tabela tbody');
-        tbody.innerHTML = '';
-
-        dados.forEach(row => {
-          const produto = row.c[0]?.v ?? '';
-          const preco = row.c[1]?.v ?? '';
-          const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${produto}</td><td>${preco}</td>`;
-          tbody.appendChild(tr);
-        });
-      } catch (error) {
-        console.error('Erro ao carregar dados da planilha:', error);
-      }
-    }
-
-    carregarDados();
-    setInterval(carregarDados, INTERVALO_MINUTOS * 60 * 1000);
-  </script>
-</body>
-</html>
