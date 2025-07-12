@@ -1,0 +1,45 @@
+:root {
+  --th-bg: #eeeeee;
+  --th-color: #333333;
+  --row-even: #f9f9f9;
+  --row-hover: #f1f1f1;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fdfdfd;
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #222;
+}
+
+table {
+  margin: auto;
+  width: 90%;
+  max-width: 1000px;
+  border-collapse: collapse;
+  font-size: 1.6rem;
+}
+
+th, td {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: var(--th-bg);
+  color: var(--th-color);
+}
+
+tr:nth-child(even) {
+  background-color: var(--row-even);
+}
+
+tr:hover {
+  background-color: var(--row-hover);
+}
