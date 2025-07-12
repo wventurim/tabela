@@ -3,29 +3,126 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Painel de Produtos</title>
+  <title>Editor de Painel</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fdfdfd;
-      color: #222;
       margin: 0;
-      padding: 2rem;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row;
+      height: 100vh;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 2rem;
-      color: #333;
+    #editor {
+      width: 300px;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border-right: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    #preview {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="color"], select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 5px;
+      font-size: 1rem;
     }
 
     table {
-      width: 90%;
-      max-width: 1000px;
-      border-collapse: separate;
-      border-spacing: 0;
-      font-size: 1.6rem;
-      background: #fff;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.4rem;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: var(--th-bg, #eee);
+      color: var(--th-color, #333);
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--row-even, #f9f9f9);
+    }
+
+    tr:hover {
+      background-color: var(--row-hover, #f1f1f1);
+    }
+  </style>
+</head>
+<body>
+  <div id="editor">
+    <h2>Editor Visual</h2>
+    <label>Título:</label>
+    <input type="text" id="titulo" value="Lista de Produtos" />
+
+    <label>Cor do Cabeçalho:</label>
+    <input type="color" id="thBg" value="#eeeeee" />
+
+    <label>Cor do Texto Cabeçalho:</label>
+    <input type="color" id="thColor" value="#333333" />
+
+    <label>Cor das Linhas Pares:</label>
+    <input type="color" id="rowEven" value="#f9f9f9" />
+
+    <label>Cor ao Passar o Mouse:</label>
+    <input type="color" id="rowHover" value="#f1f1f1" />
+  </div>
+
+  <div id="preview">
+    <h1 id="painelTitulo">Lista de Produtos</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Produto 1</td><td>R$ 10,00</td></tr>
+        <tr><td>Produto 2</td><td>R$ 20,00</td></tr>
+        <tr><td>Produto 3</td><td>R$ 30,00</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+
+    document.getElementById('titulo').addEventListener('input', (e) => {
+      document.getElementById('painelTitulo').textContent = e.target.value;
+    });
+
+    document.getElementById('thBg').addEventListener('input', (e) => {
+      root.style.setProperty('--th-bg', e.target.value);
+    });
+
+    document.getElementById('thColor').addEventListener('input', (e) => {
+      root.style.setProperty('--th-color', e.target.value);
+    });
+
+    document.getElementById('rowEven').addEventListener('input', (e) => {
+      root.style.setProperty('--row-even', e.target.value);
+    });
+
+    document.getElementById('rowHover').addEventListener('input', (e) => {
+      root.style.setProperty('--row-hover', e.target.value);
+    });
+  </script>
+</body>
+</html>
