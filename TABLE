@@ -1,33 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Tabela de Preço TV</title>
+  <title>Tabela de Preços TV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: sans-serif; background: #111; color: white; padding: 20px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #444; padding: 12px; text-align: left; }
-    th { background: #222; }
-    tr:nth-child(even) { background: #1a1a1a; }
-    img { max-height: 100px; }
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      color: #00ff88;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1a1a1a;
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #222;
+      color: #00ff88;
+      font-size: 1.2em;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1f1f1f;
+    }
+
+    img {
+      max-height: 80px;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      table {
+        font-size: 0.9em;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Tabela de Preço</h1>
+  <h1>Tabela de Preços</h1>
   <div id="tabela"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/tabletop@1.5.3/src/tabletop.min.js"></script>
   <script>
-    const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQnJ4pVIjEmb-CEUYFYkujOaDJXTmNSjx1JTJgDRlYS_ELDsR3JTTiTcYQ5Mjkj_4vskS8paaeeKH-P/pubhtml';
+    const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQnJ4pVIjEmb-CEUYFYkujOaDJXTmNSjx1JTJgDRlYS_ELDsR3JTTiTcYQ5Mjkj_4vskS8paaeeKH-P/pub?output=html';
 
-    function showInfo(data, tabletop) {
+    function showInfo(data) {
       let html = '<table><tr><th>Produto</th><th>Descrição</th><th>Preço</th><th>Imagem</th></tr>';
       data.forEach(item => {
         html += `<tr>
-          <td>${item.Produto}</td>
-          <td>${item.Descrição}</td>
-          <td>R$ ${item.Preço}</td>
-          <td><img src="${item.Imagem}" /></td>
+          <td>${item.Produto || ''}</td>
+          <td>${item.Descrição || ''}</td>
+          <td>R$ ${item.Preço || ''}</td>
+          <td>${item.Imagem ? `<img src="${item.Imagem}" alt="Imagem">` : ''}</td>
         </tr>`;
       });
       html += '</table>';
