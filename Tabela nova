@@ -142,7 +142,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/tabletop@1.6.0/tabletop.min.js"></script>
 <script>
-  const sheetID = 'e/2PACX-1vQnJ4pVIjEmb-CEUYFYkujOaDJXTmNSjx1JTJgDRlYS_ELDsR3JTTiTcYQ5Mjkj_4vskS8paaeeKH-P'; // Substitua pelo ID da sua planilha
+  const sheetID = '1qGgj4z6-1FELPhja7O_Zu9s2C47GGX_HGN_Zum5xFyU'; // Substitua pelo ID da sua planilha
 
   const loadingEl = document.getElementById('loading');
   const table = document.getElementById('data-table');
