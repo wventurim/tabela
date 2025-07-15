@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tabela de Preço TV</title>
+  <style>
+    body { font-family: sans-serif; background: #111; color: white; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #444; padding: 12px; text-align: left; }
+    th { background: #222; }
+    tr:nth-child(even) { background: #1a1a1a; }
+    img { max-height: 100px; }
+  </style>
+</head>
+<body>
+  <h1>Tabela de Preço</h1>
+  <div id="tabela"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/tabletop@1.5.3/src/tabletop.min.js"></script>
+  <script>
+    const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1qGgj4z6-1FELPhja7O_Zu9s2C47GGX_HGN_Zum5xFyU/pubhtml';
+
+    function showInfo(data, tabletop) {
+      let html = '<table><tr><th>Produto</th><th>Descrição</th><th>Preço</th><th>Imagem</th></tr>';
+      data.forEach(item => {
+        html += `<tr>
+          <td>${item.Produto}</td>
+          <td>${item.Descrição}</td>
+          <td>R$ ${item.Preço}</td>
+          <td><img src="${item.Imagem}" /></td>
+        </tr>`;
+      });
+      html += '</table>';
+      document.getElementById('tabela').innerHTML = html;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      Tabletop.init({
+        key: publicSpreadsheetUrl,
+        simpleSheet: true,
+        callback: showInfo
+      });
+    });
+  </script>
+</body>
+</html>
